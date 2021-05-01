@@ -1,0 +1,14 @@
+{
+  "name": "brian_node_project",
+  "version": "1.0.0",
+  "description": "my node project for practise",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "brian",
+  "license": "ISC",
+  "dependencies": {
+    "aws-sdk": "^2.897.0"
+  }
+}
