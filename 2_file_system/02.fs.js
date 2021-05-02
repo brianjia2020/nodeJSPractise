@@ -15,6 +15,7 @@
             - fd is the file descriptor
             - string is the content
         - close the file stream
+            fs.closeSync(fd)
 */
 
 const fs = require("fs")
