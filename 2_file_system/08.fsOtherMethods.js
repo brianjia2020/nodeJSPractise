@@ -8,3 +8,11 @@ fs.stat(path, (err, stat) => {
     console.log(stat.isDirectory())
     console.log(stat.size)
 })
+
+// fs.unlinkSync("./2_file_system/hello6.txt")
+
+fs.readdir("./2_file_system", function(err,files){
+    if(!err){
+        console.log(files)
+    }
+})
