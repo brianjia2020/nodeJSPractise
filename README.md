@@ -14,5 +14,8 @@ npm install package-name -g : install package globally
 
 ### 2. file system:
 
-1. buffer
-2.
+1. npm introduction
+2. file system
+3. promise
+   3.1 promise to encapsulate ajax request
+   3.2 primise state machine (PromiseState: pending, resolved, rejected)
