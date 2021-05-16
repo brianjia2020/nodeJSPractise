@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promise encapsulate AJAX requests</title>
+    </head>
+    <body>
+        <script>
+            //the 
+            let p = new Promise((resolve, reject) => {
+                //if it is a sync method, this method will be performed before then
+                //if it is a asunc method, it will be performed after then (setTimeout()...)
+                resolve('Ok')
+            })
+
+            let result = p.then(value=> {
+                console.log(value);
+                //break the promise chain
+                return new Promise(()=>{});
+            }, reason => {
+                console.warn(reason)
+            }).then(
+                console.log("222")
+            ).then(value => {
+                console.log("111")
+            }).catch(reason => {
+                console.warn(reason)
+            })
+
+            console.log(result)
+
+        </script>
+    </body>
+</html>

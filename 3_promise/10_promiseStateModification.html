@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promise encapsulate AJAX requests</title>
+    </head>
+    <body>
+        <script>
+            //p1 changes the result's result first
+            
+            // let p = new Promise((resolve, reject) => {
+            //     //1.
+            //     resolve('okay') // pending -> fulfilled
+            //     //2.
+            //     reject('error') //pending -> rejected
+            //     //3.
+            //     throw 'error' // pending -> rejected
+
+            // })
+
+            let p = new Promise((resolve, reject) => {
+                resolve('Ok');
+            });
+
+            p.then(value => {
+                console.log(value)
+            });
+
+            p.then(value => {
+                alert(value)
+            });
+
+        </script>
+    </body>
+</html>
