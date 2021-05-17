@@ -59,6 +59,6 @@ Promise.prototype.then = function(onResolved, onRejected){
                 onResolved : onResolved,
                 onRejected : onRejected
             });
-        }
+        };
     });
 }
