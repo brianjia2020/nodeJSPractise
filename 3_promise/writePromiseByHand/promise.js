@@ -42,21 +42,23 @@ function Promise(executor){
 
 //add then function
 Promise.prototype.then = function(onResolved, onRejected){
-    //call up callback function PromiseState
-    if (this.PromiseState === 'fulfilled'){
-        onResolved(this.PromiseResult);
-    }
-    if (this.PromiseState === 'rejected'){
-        onRejected(this.PromiseResult);
-    }
-    //check pending state
-    if (this.PromiseState === 'pending'){
-        //save the callback function
-        //better to use an array or list to store all the callbacks
-        
-        this.callbacks.push({
-            onResolved : onResolved,
-            onRejected : onRejected
-        });
-    }
+    return new Promise((resolve,reject) => {
+        //call up callback function PromiseState
+        if (this.PromiseState === 'fulfilled'){
+            onResolved(this.PromiseResult);
+        }
+        if (this.PromiseState === 'rejected'){
+            onRejected(this.PromiseResult);
+        }
+        //check pending state
+        if (this.PromiseState === 'pending'){
+            //save the callback function
+            //better to use an array or list to store all the callbacks
+            
+            this.callbacks.push({
+                onResolved : onResolved,
+                onRejected : onRejected
+            });
+        }
+    });
 }

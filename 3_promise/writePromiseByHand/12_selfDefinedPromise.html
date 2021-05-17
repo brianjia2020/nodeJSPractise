@@ -23,19 +23,19 @@
 
             });
 
-            p.then(value=>{
+            const result = p.then(value=>{
                 console.log(value);
             }, reason=>{
                 console.warn(reason);
             });
             //Now the problem, how to invoke multiple callbacks
-            p.then(value=>{
-                alert(value);
-            }, reason=>{
-                alert(reason);
-            });
+            // p.then(value=>{
+            //     alert(value);
+            // }, reason=>{
+            //     alert(reason);
+            // });
 
-            console.log(p)
+            console.log(result)
 
             // console.log(p);
 
