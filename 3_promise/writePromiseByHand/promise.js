@@ -42,10 +42,28 @@ function Promise(executor){
 
 //add then function
 Promise.prototype.then = function(onResolved, onRejected){
+    const self = this;
     return new Promise((resolve,reject) => {
         //call up callback function PromiseState
         if (this.PromiseState === 'fulfilled'){
-            onResolved(this.PromiseResult);
+            try{
+                //get callback result
+                let result = onResolved(this.PromiseResult);
+                //based on the result, we modify the state
+                if(result instanceof Promise){
+                    //if it is a promise object
+                    result.then(v=>{
+                        resolve(v);
+                    }, r=>{
+                        reject(r);
+                    });
+                } else {
+                    //state result is successful
+                    resolve(result);
+                }
+            } catch (e){
+                reject(e);
+            }
         }
         if (this.PromiseState === 'rejected'){
             onRejected(this.PromiseResult);
@@ -56,8 +74,40 @@ Promise.prototype.then = function(onResolved, onRejected){
             //better to use an array or list to store all the callbacks
             
             this.callbacks.push({
-                onResolved : onResolved,
-                onRejected : onRejected
+                onResolved : function(){
+                    try{
+                        let result = onResolved(self.PromiseResult)
+                        //
+                        if (result instanceof Promise){
+                            result.then(v=>{
+                                resolve(v)
+                            },r=>{
+                                reject(r)
+                            })
+                        } else {
+                            resolve(result);
+                        }
+                    } catch(e){
+                        reject(e)
+                    }
+                },
+                onRejected : function(){
+                    // console.log("~~~~~failed")
+                    try{
+                        let result = onRejected(self.PromiseResult)
+                        if (result instanceof Promise){
+                            result.then(v=>{
+                                resolve(v)
+                            },r=>{
+                                reject(r)
+                            })
+                        } else {
+                            resolve(result);
+                        }
+                    } catch(e){
+                        reject(e)
+                    }
+                }
             });
         };
     });
