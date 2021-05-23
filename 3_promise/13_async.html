@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Promise encapsulate AJAX requests</title>
+    </head>
+    <body>
+        <script>
+            async function main(){
+                //1. if it returns a non-promise type data
+                // return 521;
+                //2. if it returns a promise object
+                // return new Promise((resolve,reject)=>{
+                //     resolve('Ok')
+                // })
+                //3. throw an error
+                throw "Oh no"
+            }
+            let result = main();
+            console.log(result);
+        </script>
+    </body>
+</html>
